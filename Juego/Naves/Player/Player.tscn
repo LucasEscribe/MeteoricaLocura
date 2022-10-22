@@ -9,6 +9,9 @@
 radius = 36.5137
 
 [node name="Player" type="RigidBody2D"]
+z_index = 50
+z_as_relative = false
+collision_mask = 22
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
