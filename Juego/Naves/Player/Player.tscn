@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/player_blue.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Proyectiles/Canion.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Juego/Proyectiles/Laser_1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Juego/Proyectiles/Laser/LaserBeam2D.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 36.5137
@@ -20,13 +21,16 @@ shape = SubResource( 1 )
 position = Vector2( -2.73292, 0 )
 
 [node name="PuntoIzquierdo" parent="Canion" index="0"]
-position = Vector2( 1, -33 )
+position = Vector2( 22.5667, -33 )
 
 [node name="PuntoDerecho" parent="Canion" index="1"]
-position = Vector2( 0, 33 )
+position = Vector2( 21.5667, 33 )
 
 [node name="DisparoSFX" parent="Canion" index="2"]
 stream = ExtResource( 3 )
 bus = "SFX"
+
+[node name="LaserBeam2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 37.8302, 0 )
 
 [editable path="Canion"]
