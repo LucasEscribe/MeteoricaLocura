@@ -20,6 +20,7 @@ func _physics_process(delta: float) -> void:
 func daniar(otro_cuerpo: CollisionObject2D) -> void:
 	if otro_cuerpo.has_method("recibir_danio"):
 		otro_cuerpo.recibir_danio(danio)
+	queue_free()
 
 # Señales Internas
 func _on_VisibilityNotifier2D_screen_exited() -> void:

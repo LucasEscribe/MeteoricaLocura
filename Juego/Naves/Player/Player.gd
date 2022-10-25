@@ -8,7 +8,7 @@ enum ESTADO {SPAWN, VIVO, INVENCIBLE, MUERTO}
 export var potencia_motor: int = 20
 export var potencia_rotacion: int = 280
 export var estela_maxima: int = 150
-
+export var hintpoints: float = 15.0
 
 # Atributos
 var estado_actual: int = ESTADO.SPAWN
@@ -20,11 +20,20 @@ onready var canion:Canion = $Canion
 onready var laser:RayoLaser = $LaserBeam2D
 onready var estela:Estela = $EstelaPuntoInicio/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
-onready var colisionador:CollisionShape2D = $CollisionShape2D 
+onready var colisionador:CollisionShape2D = $CollisionShape2D
+onready var impacto_sfx:AudioStreamPlayer = $ImpactoSFX
 
 ## Métodos
 func _ready() -> void:
 	controlador_estados(estado_actual)
+
+
+func recibir_danio(danio: float) -> void:
+	hintpoints -= danio
+	if hintpoints <= 0.0:
+		destruir()
+	
+	impacto_sfx.play()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not esta_input_activo():
