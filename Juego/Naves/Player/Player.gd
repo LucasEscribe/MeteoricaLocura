@@ -82,7 +82,7 @@ func esta_input_activo() -> bool:
 	if estado_actual in [ESTADO.MUERTO, ESTADO.SPAWN]:
 		return false
 	
-	return false
+	return true
 
 func player_input() -> void:
 	if not esta_input_activo():
