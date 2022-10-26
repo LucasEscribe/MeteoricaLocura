@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/player_blue.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Proyectiles/Canion.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Juego/Naves/Player/Estela/Trail2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Juego/Naves/Player/Motor/MotorSFX.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Juego/Naves/Player/Player.gd" type="Script" id=7]
+[ext_resource path="res://Juego/Naves/Player/MateriaFísico.tres" type="PhysicsMaterial" id=8]
+[ext_resource path="res://Juego/Naves/impactoNave.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Juego/Naves/Player/Escudo/Escudo.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 36.5137
@@ -15,7 +18,7 @@ radius = 36.5137
 resource_name = "default"
 length = 1.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:scale")
+tracks/0/path = NodePath("../Player/Sprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -31,7 +34,7 @@ tracks/0/keys = {
 resource_name = "spawn"
 length = 1.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:scale")
+tracks/0/path = NodePath("../Player/Sprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -47,6 +50,10 @@ tracks/0/keys = {
 z_index = 50
 z_as_relative = false
 collision_mask = 22
+physics_material_override = ExtResource( 8 )
+can_sleep = false
+linear_damp = 1.0
+angular_damp = 4.0
 script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -90,6 +97,12 @@ target_path = NodePath("..")
 autoplay = "spawn"
 anims/default = SubResource( 2 )
 anims/spawn = SubResource( 3 )
+
+[node name="ImpactoSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+bus = "SFX"
+
+[node name="Escudo" parent="." instance=ExtResource( 10 )]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 

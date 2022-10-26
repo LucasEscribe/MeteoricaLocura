@@ -19,4 +19,5 @@ rotation = 1.5708
 position = Vector2( 0.223313, 0.124104 )
 scale = Vector2( 1.89567, 0.313348 )
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

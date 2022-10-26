@@ -1,8 +1,6 @@
 class_name Player
 extends RigidBody2D
 
-Eventos.emit_signal("nave_destruida", global_position, 3)
-
 #Enums
 enum ESTADO {SPAWN, VIVO, INVENCIBLE, MUERTO}
 
@@ -10,7 +8,7 @@ enum ESTADO {SPAWN, VIVO, INVENCIBLE, MUERTO}
 export var potencia_motor: int = 20
 export var potencia_rotacion: int = 280
 export var estela_maxima: int = 150
-
+export var hitpoints: float = 15.0
 
 # Atributos
 var estado_actual: int = ESTADO.SPAWN
@@ -22,11 +20,23 @@ onready var canion:Canion = $Canion
 onready var laser:RayoLaser = $LaserBeam2D
 onready var estela:Estela = $EstelaPuntoInicio/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
-onready var colisionador:CollisionShape2D = $CollisionShape2D 
+onready var colisionador:CollisionShape2D = $CollisionShape2D
+onready var impacto_sfx:AudioStreamPlayer = $ImpactoSFX
+onready var escudo:Escudo = $Escudo
+
 
 ## Métodos
 func _ready() -> void:
 	controlador_estados(estado_actual)
+
+
+func recibir_danio(danio: float) -> void:
+	hitpoints -= danio
+	if hitpoints <= 0.0:
+		destruir()
+	
+	impacto_sfx.play()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not esta_input_activo():
@@ -49,6 +59,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if (event.is_action_released("mover_adelante") or event.is_action_released("mover_atras")):
 		motor_sfx.sonido_off()
+
+	# Control Escudo
+	if event.is_action_pressed("escudo") and not escudo.get_esta_actvado():
+		escudo.activar()
+
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	apply_central_impulse(empuje.rotated(rotation))
@@ -73,7 +88,7 @@ func controlador_estados(nuevo_estado: int) -> void:
 		ESTADO.MUERTO:
 			colisionador.set_deferred("disabled", true)
 			canion.set_puede_disparar(true)
-			Eventos.emit_signal("nave_destruida", global_position)
+			Eventos.emit_signal("nave_destruida", global_position, 3)
 			queue_free()
 		_:
 			printerr("Error de estado")
@@ -84,7 +99,7 @@ func esta_input_activo() -> bool:
 	if estado_actual in [ESTADO.MUERTO, ESTADO.SPAWN]:
 		return false
 	
-	return false
+	return true
 
 func player_input() -> void:
 	if not esta_input_activo():
@@ -113,7 +128,8 @@ func player_input() -> void:
 
 func destruir() -> void:
 	controlador_estados(ESTADO.MUERTO)
-	
+
+# Señales Internas
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "spawn":
 		controlador_estados(ESTADO.VIVO)
