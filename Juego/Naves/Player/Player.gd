@@ -8,7 +8,7 @@ enum ESTADO {SPAWN, VIVO, INVENCIBLE, MUERTO}
 export var potencia_motor: int = 20
 export var potencia_rotacion: int = 280
 export var estela_maxima: int = 150
-export var hintpoints: float = 15.0
+export var hitpoints: float = 15.0
 
 # Atributos
 var estado_actual: int = ESTADO.SPAWN
@@ -22,6 +22,8 @@ onready var estela:Estela = $EstelaPuntoInicio/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
 onready var colisionador:CollisionShape2D = $CollisionShape2D
 onready var impacto_sfx:AudioStreamPlayer = $ImpactoSFX
+onready var escudo:Escudo = $Escudo
+
 
 ## Métodos
 func _ready() -> void:
@@ -29,11 +31,12 @@ func _ready() -> void:
 
 
 func recibir_danio(danio: float) -> void:
-	hintpoints -= danio
-	if hintpoints <= 0.0:
+	hitpoints -= danio
+	if hitpoints <= 0.0:
 		destruir()
 	
 	impacto_sfx.play()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not esta_input_activo():
@@ -56,6 +59,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if (event.is_action_released("mover_adelante") or event.is_action_released("mover_atras")):
 		motor_sfx.sonido_off()
+
+	# Control Escudo
+	if event.is_action_pressed("escudo") and not escudo.get_esta_actvado():
+		escudo.activar()
+
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	apply_central_impulse(empuje.rotated(rotation))
@@ -120,7 +128,8 @@ func player_input() -> void:
 
 func destruir() -> void:
 	controlador_estados(ESTADO.MUERTO)
-	
+
+# Señales Internas
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "spawn":
 		controlador_estados(ESTADO.VIVO)
