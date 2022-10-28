@@ -4,7 +4,6 @@ extends Area2D
 ## Variables
 var esta_activado: bool = false setget , get_esta_activado
 
-
 ## Variables Export
 export var energia: float = 8.0
 export var radio_desgaste: float = -1.6

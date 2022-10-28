@@ -23,7 +23,7 @@ func recibir_danio(danio: float) -> void:
 	if hitpoints <= 0:
 		destruir()
 	
-	impacto_vfx.play()
+	impacto_vfx.play("impacto")
 	impacto_sfx.play()
 
 func destruir() -> void:

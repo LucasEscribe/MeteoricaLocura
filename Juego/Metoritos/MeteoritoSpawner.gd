@@ -6,6 +6,7 @@ export var direccion:Vector2 = Vector2(1, 1)
 export var rango_tamanio_meteorito:Vector2 = Vector2(0.5, 2.2)
 
 ## Métodos
+
 #func _ready() -> void:
 #	yield(owner, "ready")
 #	spawnear_meteorito()

@@ -5,7 +5,7 @@ extends Node2D
 ## Atributos Export
 export var explosion:PackedScene = null
 export var meteorito:PackedScene = null
-export var explosion_meteorito: PackedScene = null
+export var explosion_meteorito:PackedScene = null
 
 ## Atributos Onready
 onready var contenedor_proyectiles: Node
@@ -50,8 +50,8 @@ func _on_nave_destruida(posicion: Vector2, num_explosiones: int) -> void:
 func _on_meteorito_destruido(pos: Vector2) -> void:
 	var new_explosion:ExplosionMeteorito = explosion_meteorito.instance()
 	new_explosion.global_position = pos
-	add_child(new_explosion) 
-
+	add_child(new_explosion)  
+ 
 func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio: float) -> void:
 	var new_meteorito:Meteorito = meteorito.instance()
 	new_meteorito.crear(

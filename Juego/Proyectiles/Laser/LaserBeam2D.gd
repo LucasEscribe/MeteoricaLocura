@@ -11,7 +11,7 @@ export var max_length := 1400.0
 # Base duration of the tween animation in seconds.
 export var growth_time := 0.1
 
-export var radio_danio := 0.05
+export var radio_danio := 0.5
 
 # If `true`, the laser is firing.
 # It plays appearing and disappearing animations when it's not animating.

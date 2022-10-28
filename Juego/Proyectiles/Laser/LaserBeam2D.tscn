@@ -61,6 +61,7 @@ scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
 
 [node name="LaserBeam2D" type="RayCast2D"]
+position = Vector2( -0.280609, 0 )
 z_index = 41
 z_as_relative = false
 enabled = true
@@ -68,6 +69,7 @@ cast_to = Vector2( 0, 0 )
 collision_mask = 6
 collide_with_areas = true
 script = ExtResource( 1 )
+radio_danio = 5.5
 
 [node name="FillLine2D" type="Line2D" parent="."]
 modulate = Color( 1.5, 1.5, 1.5, 1 )
