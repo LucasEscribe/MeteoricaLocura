@@ -27,9 +27,8 @@ func daniar(otro_cuerpo: CollisionObject2D) -> void:
 func _on_VisibilityNotifier2D_screen_exited() -> void:
 	queue_free()
 
-
-func _on_area_entered(area: Area2D) -> void:
+func _on_Proyectil_area_entered(area: Area2D) -> void:
 	if area.has_method("recibir_danio"):
 		area.recibir_danio(danio)
-	
+
 	queue_free()
