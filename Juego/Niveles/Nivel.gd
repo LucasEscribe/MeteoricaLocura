@@ -30,9 +30,10 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void
 	transicion_camaras(
 		$Player/CamaraPlayer.global_position,
 		camara_nivel.global_position,
-		camara_nivel)
+		camara_nivel
+	)
 
-func transicion_camaras(desde: Vector2, hasta: Vector2, camara_actual: Camera2D) -> void:
+func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D) -> void:
 	$TweenCamara.interpolate_property(
 		camara_actual,
 		"global_position",
@@ -42,7 +43,8 @@ func transicion_camaras(desde: Vector2, hasta: Vector2, camara_actual: Camera2D)
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)
-	camara_actual.current = $Tweencamara.start() 
+	camara_actual.current = true
+	$TweenCamara.start() 
 
 ## Metodos Custom 
 func conectar_seniales() -> void:
