@@ -1,20 +1,431 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/SectorMeteoritos.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Juego/Explosiones/Explosion.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=4]
 [ext_resource path="res://default_env.tres" type="Environment" id=5]
-[ext_resource path="res://Juego/Enemigos/EnemigoDummy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Juego/Niveles/Fondos/azul.png" type="Texture" id=7]
-[ext_resource path="res://Juego/Metoritos/Metoritos.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Juego/Metoritos/MaterialFisiscoMeteorito.tres" type="PhysicsMaterial" id=8]
 [ext_resource path="res://Juego/Explosiones/ExplosionMeteorito.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Juego/Metoritos/Metoritos.gd" type="Script" id=10]
+[ext_resource path="res://Juego/Metoritos/meteorito_dim1.png" type="Texture" id=11]
+[ext_resource path="res://Juego/Metoritos/explosionMeteorito.ogg" type="AudioStream" id=12]
+[ext_resource path="res://Juego/Metoritos/meteorito.png" type="Texture" id=13]
+[ext_resource path="res://Juego/Metoritos/meteorito_dim2.png" type="Texture" id=14]
+
+[sub_resource type="Animation" id=1]
+resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ImpactoVFX/SpriteDiminuto1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ImpactoVFX/SpriteDiminuto1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ImpactoVFX/SpriteDiminuto1:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ImpactoVFX/SpriteDiminuto1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ImpactoVFX/SpriteDiminuto2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ImpactoVFX/SpriteDiminuto2:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ImpactoVFX/SpriteDiminuto2:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("ImpactoVFX/SpriteDiminuto2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("ImpactoVFX/SpriteDiminuto3:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("ImpactoVFX/SpriteDiminuto3:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("ImpactoVFX/SpriteDiminuto3:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("ImpactoVFX/SpriteDiminuto3:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("ImpactoVFX/SpriteDiminuto4:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("ImpactoVFX/SpriteDiminuto4:rotation_degrees")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("ImpactoVFX/SpriteDiminuto4:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("ImpactoVFX/SpriteDiminuto4:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "impacto"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("ImpactoVFX/SpriteDiminuto1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 31, -28 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ImpactoVFX/SpriteDiminuto1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 144.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ImpactoVFX/SpriteDiminuto1:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ImpactoVFX/SpriteDiminuto1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ImpactoVFX/SpriteDiminuto2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -49, -9 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ImpactoVFX/SpriteDiminuto2:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ImpactoVFX/SpriteDiminuto2:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("ImpactoVFX/SpriteDiminuto2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("ImpactoVFX/SpriteDiminuto3:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -16, 31 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("ImpactoVFX/SpriteDiminuto3:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 219.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("ImpactoVFX/SpriteDiminuto3:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("ImpactoVFX/SpriteDiminuto3:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("ImpactoVFX/SpriteDiminuto4:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 37, 32 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("ImpactoVFX/SpriteDiminuto4:rotation_degrees")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -126.0 ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("ImpactoVFX/SpriteDiminuto4:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("ImpactoVFX/SpriteDiminuto4:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="PackedScene" id=3]
+_bundled = {
+"conn_count": 0,
+"conns": PoolIntArray(  ),
+"editable_instances": [  ],
+"names": PoolStringArray( "Metoritos", "z_index", "z_as_relative", "collision_layer", "collision_mask", "physics_material_override", "gravity_scale", "angular_damp", "script", "RigidBody2D", "Sprite", "texture", "CollisionShape2D", "ImpactoSFX", "stream", "AudioStreamPlayer2D", "ImpactoVFX", "anims/default", "anims/impacto", "AnimationPlayer", "SpriteDiminuto1", "SpriteDiminuto2", "SpriteDiminuto3", "SpriteDiminuto4" ),
+"node_count": 9,
+"node_paths": [  ],
+"nodes": PoolIntArray( -1, -1, 9, 0, -1, 8, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 5, 8, 6, 0, 0, 0, 10, 10, -1, 1, 11, 7, 0, 0, 0, 12, 12, -1, 0, 0, 0, 0, 15, 13, -1, 1, 14, 8, 0, 0, 0, 19, 16, -1, 2, 17, 9, 18, 10, 0, 4, 0, 10, 20, -1, 2, 1, 11, 11, 12, 0, 4, 0, 10, 21, -1, 2, 1, 11, 11, 13, 0, 4, 0, 10, 22, -1, 2, 1, 11, 11, 12, 0, 4, 0, 10, 23, -1, 2, 1, 11, 11, 13, 0 ),
+"variants": [ 30, false, 4, 31, ExtResource( 8 ), 0.0, ExtResource( 10 ), ExtResource( 13 ), ExtResource( 12 ), SubResource( 1 ), SubResource( 2 ), 1, ExtResource( 11 ), ExtResource( 14 ) ],
+"version": 2
+}
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 4 )
 explosion = ExtResource( 3 )
-meteorito = ExtResource( 8 )
+meteorito = SubResource( 3 )
 explosion_meteorito = ExtResource( 9 )
+sector_meteoritos = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 567.106, 314.806 )
@@ -23,10 +434,7 @@ gravity_scale = 0.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 5 )
 
-[node name="SectorMeteoritos" parent="." instance=ExtResource( 2 )]
-position = Vector2( 975.44, 544.901 )
-
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Fondo" type="TextureRect" parent="."]
 margin_right = 1929.0
 margin_bottom = 1105.0
 texture = ExtResource( 7 )
@@ -35,5 +443,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EnemigoDummy" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1116.71, 437.266 )
+[node name="TriggersLluviaMeteoritos" type="Node2D" parent="."]
+
+[node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 6 )]
+position = Vector2( 1311.8, 322.904 )
+tipo_peligro = "Meteorito"
+numero_peligros = 12
+
+[node name="CamaraNivel" type="Camera2D" parent="."]
+
+[node name="TweenCamara" type="Tween" parent="."]

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Escudo.ogg-a79827ffb0d391622cec917b4b0777df.oggstr" 
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

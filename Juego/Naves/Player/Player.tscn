@@ -106,7 +106,10 @@ stream = ExtResource( 9 )
 bus = "SFX"
 
 [node name="Escudo" parent="." instance=ExtResource( 10 )]
-modulate = Color( 0.2, 4.5, 0.3, 1 )
+modulate = Color( 0.2, 4.50196, 0.301961, 0.368627 )
+
+[node name="CamaraPlayer" type="Camera2D" parent="."]
+current = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Juego/Metoritos/MaterialFisiscoMeteorito.tres" type="PhysicsMaterial" id=1]
 [ext_resource path="res://Juego/Metoritos/Metoritos.gd" type="Script" id=2]
 [ext_resource path="res://Juego/Metoritos/meteorito.png" type="Texture" id=3]
 [ext_resource path="res://Juego/Metoritos/meteorito_dim2.png" type="Texture" id=4]
 [ext_resource path="res://Juego/Metoritos/meteorito_dim1.png" type="Texture" id=5]
+[ext_resource path="res://Juego/Metoritos/explosionMeteorito.ogg" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -399,6 +400,8 @@ tracks/15/keys = {
 }
 
 [node name="Metoritos" type="RigidBody2D"]
+z_index = 30
+z_as_relative = false
 collision_layer = 4
 collision_mask = 31
 physics_material_override = ExtResource( 1 )
@@ -412,6 +415,7 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="ImpactoSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
 
 [node name="ImpactoVFX" type="AnimationPlayer" parent="."]
 anims/default = SubResource( 1 )

@@ -11,7 +11,7 @@ export var max_length := 1400.0
 # Base duration of the tween animation in seconds.
 export var growth_time := 0.1
 
-export var radio_danio := 0.5
+export var radio_danio := 2.5
 
 # If `true`, the laser is firing.
 # It plays appearing and disappearing animations when it's not animating.
@@ -24,7 +24,6 @@ onready var casting_particles := $CastingParticles2D
 onready var collision_particles := $CollisionParticles2D
 onready var beam_particles := $BeamParticles2D
 onready var laser_sfx: AudioStreamPlayer2D = $LaserSFX
-
 onready var line_width: float = fill.width
 
 

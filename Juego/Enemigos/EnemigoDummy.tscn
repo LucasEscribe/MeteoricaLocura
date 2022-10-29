@@ -10,13 +10,15 @@
 extents = Vector2( 61.1487, 58.5812 )
 
 [node name="EnemigoDummy" type="Node2D"]
+z_index = 30
+z_as_relative = false
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 z_index = 30
 z_as_relative = false
 collision_layer = 2
-collision_mask = 9
+collision_mask = 15
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
