@@ -1,6 +1,8 @@
 class_name Nivel
 extends Node2D
 
+## Atributos
+var meteoritos_totales:int = 0
 
 ## Atributos Export
 export var explosion:PackedScene = null
@@ -22,6 +24,7 @@ func _ready() -> void:
 	crear_contenedores()
 
 func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void:
+	meteoritos_totales = numero_peligros
 	var new_sector_meteoritos:SectorMeteoritos = sector_meteoritos.instance()
 	new_sector_meteoritos.crear(centro_camara, numero_peligros)
 	camara_nivel.global_position = centro_camara
@@ -32,6 +35,16 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void
 		camara_nivel.global_position,
 		camara_nivel
 	)
+
+func controlar_meteoritos_restantes()  -> void:
+	meteoritos_totales -= 1
+	if meteoritos_totales == 0:
+		contenedor_sector_meteoritos.get_child(0).queue_free()
+		transicion_camaras(
+			camara_nivel.global_position,
+			$Player/CamaraPlayer.global_position,
+			$Player/CamaraPlayer
+		)
 
 func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D) -> void:
 	$TweenCamara.interpolate_property(
@@ -95,6 +108,8 @@ func _on_meteorito_destruido(pos: Vector2) -> void:
 	var new_explosion:ExplosionMeteorito = explosion_meteorito.instance()
 	new_explosion.global_position = pos
 	add_child(new_explosion)  
+	
+	controlar_meteoritos_restantes()
  
 func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio: float) -> void:
 	var new_meteorito:Meteorito = meteorito.instance()

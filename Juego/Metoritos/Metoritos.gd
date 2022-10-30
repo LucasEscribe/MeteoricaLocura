@@ -15,6 +15,7 @@ var hitpoints: float
 var esta_en_sector: bool = true setget set_esta_en_sector
 var pos_spawn_original:Vector2
 var vel_spawn_original:Vector2
+var esta_destruido:bool = false
 
  # Setters y Getters
 func set_esta_en_sector(valor: bool) -> void:
@@ -37,7 +38,7 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 ## Métodos Custom
 func recibir_danio(danio: float) -> void:
 	hitpoints -= danio
-	if hitpoints <= 0:
+	if hitpoints <= 0 and not esta_destruido:
 		destruir()
 	
 	impacto_vfx.play("impacto")

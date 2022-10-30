@@ -257,6 +257,7 @@ __meta__ = {
 
 [node name="AdvertenciaSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+bus = "SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/advertencia = SubResource( 6 )
