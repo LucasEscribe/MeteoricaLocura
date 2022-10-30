@@ -11,53 +11,17 @@ export var explosion_meteorito:PackedScene = null
 export var sector_meteoritos:PackedScene = null
 export var tiempo_transicion_camara: float = 0.2
 
-
 ## Atributos Onready
 onready var contenedor_proyectiles: Node
 onready var contenedor_meteoritos: Node
 onready var contenedor_sector_meteoritos: Node
 onready var camara_nivel:Camera2D = $CamaraNivel
 
+
 ## Metodos
 func _ready() -> void:
 	conectar_seniales()
 	crear_contenedores()
-
-func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void:
-	meteoritos_totales = numero_peligros
-	var new_sector_meteoritos:SectorMeteoritos = sector_meteoritos.instance()
-	new_sector_meteoritos.crear(centro_camara, numero_peligros)
-	camara_nivel.global_position = centro_camara
-	#camara_nivel.current = true
-	contenedor_sector_meteoritos.add_child(new_sector_meteoritos)
-	transicion_camaras(
-		$Player/CamaraPlayer.global_position,
-		camara_nivel.global_position,
-		camara_nivel
-	)
-
-func controlar_meteoritos_restantes()  -> void:
-	meteoritos_totales -= 1
-	if meteoritos_totales == 0:
-		contenedor_sector_meteoritos.get_child(0).queue_free()
-		transicion_camaras(
-			camara_nivel.global_position,
-			$Player/CamaraPlayer.global_position,
-			$Player/CamaraPlayer
-		)
-
-func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D) -> void:
-	$TweenCamara.interpolate_property(
-		camara_actual,
-		"global_position",
-		desde,
-		hasta,
-		tiempo_transicion_camara,
-		Tween.TRANS_LINEAR,
-		Tween.EASE_IN_OUT
-	)
-	camara_actual.current = true
-	$TweenCamara.start() 
 
 ## Metodos Custom 
 func conectar_seniales() -> void:
@@ -66,6 +30,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("nave_destruida", self, "_on_nave_destruida")
 	Eventos.connect("meteorito_destruido", self, "_on_meteorito_destruido")
 	Eventos.connect("nave_en_sector_peligro", self, "_on_nave_en_sector_peligro") 
+
 
 func crear_contenedores() -> void:
 	# Contenedor Proyectiles
@@ -85,6 +50,7 @@ func crear_contenedores() -> void:
 func _on_disparo(proyectil:Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
 
+
 func _on_nave_destruida(posicion: Vector2, num_explosiones: int) -> void:
 	for i in range (num_explosiones):
 		var new_explosion:Node2D = explosion.instance()
@@ -92,16 +58,54 @@ func _on_nave_destruida(posicion: Vector2, num_explosiones: int) -> void:
 		add_child(new_explosion)
 		yield (get_tree().create_timer(0.6), "timeout")
 
+
+func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void:
+	meteoritos_totales = numero_peligros
+	var new_sector_meteoritos:SectorMeteoritos = sector_meteoritos.instance()
+	new_sector_meteoritos.crear(centro_camara, numero_peligros)
+	camara_nivel.global_position = centro_camara
+	#camara_nivel.current = true
+	contenedor_sector_meteoritos.add_child(new_sector_meteoritos)
+	$Player/CamaraPlayer.devolver_zoom_original()
+	transicion_camaras(
+		$Player/CamaraPlayer.global_position,
+		camara_nivel.global_position,
+		camara_nivel,
+		tiempo_transicion_camara
+	)
+
+
+func controlar_meteoritos_restantes()  -> void:
+	meteoritos_totales -= 1
+	if meteoritos_totales == 0:
+		contenedor_sector_meteoritos.get_child(0).queue_free()
+		$Player/CamaraPlayer.set.puede_hacer_zoom(true)
+		transicion_camaras(
+			camara_nivel.global_position,
+			$Player/CamaraPlayer.global_position,
+			$Player/CamaraPlayer,
+			tiempo_transicion_camara * 0.10
+		)
+
+func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D, tiempo_transicion:float) -> void:
+	$TweenCamara.interpolate_property(
+		camara_actual,
+		"global_position",
+		desde,
+		hasta,
+		tiempo_transicion,
+		Tween.TRANS_LINEAR,
+		Tween.EASE_IN_OUT
+	)
+	camara_actual.current = true
+	$TweenCamara.start()
+
+
 func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_peligros:int) -> void:
 	if tipo_peligro == "Meteorito":
 		crear_sector_meteoritos(centro_cam, num_peligros)
 	elif tipo_peligro == "Enemigo":
 		pass
-
-#func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void:
-#	var new_sector_meteoritos:SectorMeteoritos = sector_meteoritos.instance()
-#	new_sector_meteoritos.crear(centro_camara, numero_peligros)
-#	contenedor_sector_meteoritos.add_child(new_sector_meteoritos) 
 
 ## Conexión Señales Externas
 func _on_meteorito_destruido(pos: Vector2) -> void:
@@ -120,3 +124,8 @@ func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio: f
 	)
 	
 	contenedor_meteoritos.add_child(new_meteorito)
+
+## Señales Internas
+func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
+	if object.name == "CamaraPlayer":
+		object.global_position = $Player.global_position

@@ -55,7 +55,7 @@ func aleatorizar_velocidad() -> float:
 
 
 ## Constructor
-func crear(pos: Vector2,  dir: Vector2, tamanio: float) -> void:
+func crear(pos: Vector2, dir: Vector2, tamanio: float) -> void:
 	position = pos
 	pos_spawn_original = position
 	
