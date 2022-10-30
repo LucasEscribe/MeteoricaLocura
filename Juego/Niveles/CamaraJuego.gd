@@ -1,5 +1,5 @@
-class_name CamaraPlayer
-extends CamaraJuego
+class_name CamaraJuego
+extends Camera2D
 
 ## Atributos
 var zoom_original:Vector2
@@ -50,3 +50,4 @@ func zoom_suavizado(nuevo_zoom_x: float, nuevo_zoom_y: float, tiempo_transicion:
 func devolver_zoom_original() -> void:
 	puede_hacer_zoom = false
 	zoom_suavizado(zoom_original.x, zoom_original.y, 1.0)
+
