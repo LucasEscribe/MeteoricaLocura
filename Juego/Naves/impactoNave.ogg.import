@@ -11,5 +11,5 @@ dest_files=[ "res://.import/impactoNave.ogg-779b668c11c39f1287b1d43f669ff484.ogg
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

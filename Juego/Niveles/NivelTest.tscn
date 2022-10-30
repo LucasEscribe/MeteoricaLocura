@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/SectorMeteoritos.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Juego/Niveles/Fondos/azul.png" type="Texture" id=7]
 [ext_resource path="res://Juego/Metoritos/Metoritos.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Juego/Explosiones/ExplosionMeteorito.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Juego/Enemigos/EnemigoDummy.tscn" type="PackedScene" id=10]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 4 )
@@ -26,8 +27,10 @@ gravity_scale = 0.0
 environment = ExtResource( 5 )
 
 [node name="Fondo" type="TextureRect" parent="."]
-margin_right = 1929.0
-margin_bottom = 1105.0
+margin_left = -1776.0
+margin_top = -1023.0
+margin_right = 4620.0
+margin_bottom = 2578.0
 texture = ExtResource( 7 )
 stretch_mode = 1
 __meta__ = {
@@ -44,3 +47,6 @@ numero_peligros = 12
 [node name="CamaraNivel" type="Camera2D" parent="."]
 
 [node name="TweenCamara" type="Tween" parent="."]
+
+[node name="EnemigoDummy" parent="." instance=ExtResource( 10 )]
+position = Vector2( 215.269, 349.813 )

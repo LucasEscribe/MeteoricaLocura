@@ -2,7 +2,7 @@ class_name Escudo
 extends Area2D
 
 ## Variables
-var esta_activado: bool = false setget , get_esta_activado
+var esta_activado: bool = false setget, get_esta_activado
 
 ## Variables Export
 export var energia: float = 8.0
