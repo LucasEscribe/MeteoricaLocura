@@ -39,6 +39,7 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 func recibir_danio(danio: float) -> void:
 	hitpoints -= danio
 	if hitpoints <= 0 and not esta_destruido:
+		esta_destruido = true
 		destruir()
 	
 	impacto_vfx.play("impacto")
@@ -65,7 +66,7 @@ func crear(pos: Vector2, dir: Vector2, tamanio: float) -> void:
 	
 	# Calcular Velocidad
 	linear_velocity = vel_lineal_base * dir / tamanio * aleatorizar_velocidad()
-	#angular_velocity = (vel_ang_base / tamanio) * aleatorizar_velocidad()
+	angular_velocity = (vel_ang_base / tamanio) * aleatorizar_velocidad()
 	vel_spawn_original = linear_velocity
 	
 	# radio = diametro / 2
@@ -73,11 +74,7 @@ func crear(pos: Vector2, dir: Vector2, tamanio: float) -> void:
 	var forma_colision: CircleShape2D = CircleShape2D.new()
 	forma_colision.radius = radio
 	$CollisionShape2D.shape = forma_colision
-	
-	# Calcular Velocidades
-#	linear_velocity = vel_lineal_base * dir / tamanio 
-#	angular_velocity = vel_ang_base / tamanio
-	
+
 	# Calcular Hitpoints
 	hitpoints = hitpoints_base * tamanio
 

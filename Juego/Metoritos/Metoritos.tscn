@@ -408,6 +408,7 @@ physics_material_override = ExtResource( 1 )
 gravity_scale = 0.0
 angular_damp = 0.0
 script = ExtResource( 2 )
+vel_lineal_base = Vector2( 222, 222 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
