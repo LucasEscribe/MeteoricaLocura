@@ -1,0 +1,21 @@
+[gd_scene format=2]
+
+[node name="EstacionRecarga" type="Node2D"]
+
+[node name="AreaColision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaColision"]
+
+[node name="SpriteEstacion" type="Sprite" parent="AreaColision"]
+
+[node name="AreaRecarga" type="Area2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="AreaRecarga"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaRecarga"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CargaSFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="VacioSFX" type="AudioStreamPlayer2D" parent="."]

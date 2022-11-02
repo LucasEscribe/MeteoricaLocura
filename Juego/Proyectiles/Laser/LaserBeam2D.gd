@@ -11,7 +11,10 @@ export var max_length := 1400.0
 # Base duration of the tween animation in seconds.
 export var growth_time := 0.1
 
-export var radio_danio := 2.5
+export var radio_danio:float = 4.0
+export var energia:float = 4.0
+export var radio_desgaste:float = -1.0
+
 
 # If `true`, the laser is firing.
 # It plays appearing and disappearing animations when it's not animating.
@@ -59,6 +62,11 @@ func set_is_casting(cast: bool) -> void:
 # collision point, whichever is closest.
 func cast_beam(delta: float) -> void:
 	var cast_point := cast_to
+	if energia <= 0.0:
+		set_is_casting(false)
+		return
+	
+	energia += radio_desgaste * delta
 	
 	force_raycast_update()
 	collision_particles.emitting = is_colliding()
