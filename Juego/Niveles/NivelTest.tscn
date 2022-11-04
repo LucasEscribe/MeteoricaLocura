@@ -33,6 +33,17 @@ environment = ExtResource( 5 )
 position = Vector2( 1311.8, 322.904 )
 numero_peligros = 12
 
+[node name="ContenedorEstaciones" type="Node" parent="."]
+
+[node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
+position = Vector2( 1275.04, 1199.44 )
+
+[node name="EstacionRecarga2" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
+position = Vector2( 1346.88, -883.85 )
+
+[node name="EstacionRecarga3" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
+position = Vector2( -1203.36, 481.064 )
+
 [node name="CamaraNivel" type="Camera2D" parent="."]
 script = ExtResource( 10 )
 
@@ -40,10 +51,8 @@ script = ExtResource( 10 )
 
 [node name="TweenCamara" type="Tween" parent="."]
 
-[node name="EstacionRecarga" parent="." instance=ExtResource( 11 )]
-position = Vector2( 1275.04, 1199.44 )
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2( 256, 256 )

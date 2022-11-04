@@ -253,8 +253,8 @@ direccion = Vector2( -1, -1 )
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 modulate = Color( 0.854902, 0.105882, 0.105882, 0.745098 )
-margin_right = 1907.0
-margin_bottom = 1055.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
