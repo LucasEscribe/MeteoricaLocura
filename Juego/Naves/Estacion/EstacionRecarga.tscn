@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Juego/Naves/Estacion/EstacioCarga.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Naves/Estacion/PuntoBlanco.png" type="Texture" id=2]
 [ext_resource path="res://Juego/Naves/Estacion/EstacionRecarga.gd" type="Script" id=3]
+[ext_resource path="res://Juego/Naves/Estacion/recargar_nave.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Juego/Naves/Estacion/vacio_estacion.ogg" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 1.97333
@@ -34,10 +36,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.6, 3, 4.6, 6 ),
+"times": PoolRealArray( 0, 1.5, 3, 4.5, 6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 30, 30 ), Vector2( 35, 35 ), Vector2( 30, 30 ), Vector2( 35, 35 ), Vector2( 30, 30 ) ]
+"values": [ Vector2( 39, 39 ), Vector2( 34, 34 ), Vector2( 38, 38 ), Vector2( 34, 34 ), Vector2( 39, 39 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("AreaRecarga/Sprite:modulate")
@@ -121,7 +123,7 @@ shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="AreaRecarga"]
 modulate = Color( 0.054902, 0.2, 0.878431, 0.223529 )
-scale = Vector2( 30, 30 )
+scale = Vector2( 39, 39 )
 z_as_relative = false
 texture = ExtResource( 2 )
 
@@ -131,8 +133,12 @@ anims/activando = SubResource( 3 )
 anims/default = SubResource( 4 )
 
 [node name="CargaSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "SFX"
 
 [node name="VacioSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+bus = "SFX"
 
 [connection signal="body_entered" from="AreaColision" to="." method="_on_AreaColision_body_entered"]
 [connection signal="body_entered" from="AreaRecarga" to="." method="_on_AreaRecarga_body_entered"]

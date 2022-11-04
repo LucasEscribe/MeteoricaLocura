@@ -1,4 +1,3 @@
-
 class_name RayoLaser
 extends RayCast2D
 
@@ -9,20 +8,19 @@ export var max_length := 1400.0
 # Base duration of the tween animation in seconds.
 export var growth_time := 0.1
 
-export var radio_danio := 2.5
-
 # If `true`, the laser is firing.
 # It plays appearing and disappearing animations when it's not animating.
 # See `appear()` and `disappear()` for more information.
 var is_casting := false setget set_is_casting
-var energia_original:float
+var energia_original:float# = 1.0
 
-#############
-var energia:float = 0.1
-var radio:float = 0.1
-var radio_desgaste:float = 0.1
-#############
+## Atributos Export
+export var energia:float = 5.0
+export var radio:float = 4.0
+export var radio_desgaste:float = -1.0
+export var radio_danio:float = 4.0
 
+## Atributos Onready
 onready var fill := $FillLine2D
 onready var tween := $Tween
 onready var casting_particles := $CastingParticles2D
@@ -60,7 +58,6 @@ func set_is_casting(cast: bool) -> void:
 	beam_particles.emitting = is_casting
 	casting_particles.emitting = is_casting
 
-
 func cast_beam(delta: float) -> void:
 	if energia <= 0.0:
 		set_is_casting(false)
@@ -88,7 +85,6 @@ func controlar_energia(consumo:float) -> void:
 	energia += consumo
 	if energia > energia_original:
 		energia = energia_original
-
 
 func appear() -> void:
 	if tween.is_active():

@@ -1,6 +1,6 @@
 extends Node
 
-signal nave_destruida(posicion, explosiones)
+signal nave_destruida(nave, posicion, explosiones)
 signal disparo(proyectil)
 signal spawn_meteorito(posicion, direccion, tamanio)
 signal meteorito_destruido(posicion)
