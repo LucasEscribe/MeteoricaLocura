@@ -21,8 +21,7 @@ sector_meteoritos = ExtResource( 2 )
 tiempo_transicion_camara = 0.7
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 18.5488, 272.934 )
-gravity_scale = 0.0
+position = Vector2( 466.831, 367.05 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 5 )
