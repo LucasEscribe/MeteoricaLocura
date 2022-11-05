@@ -22,8 +22,6 @@ func set_esta_en_sector(valor: bool) -> void:
 	esta_en_sector = valor
 
 ## Métodos
-func _ready() -> void:
-	angular_velocity = vel_ang_base
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	if esta_en_sector:

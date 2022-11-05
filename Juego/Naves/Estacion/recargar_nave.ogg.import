@@ -11,5 +11,5 @@ dest_files=[ "res://.import/recargar_nave.ogg-a686ca03793b1431be817e143be73c9d.o
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
