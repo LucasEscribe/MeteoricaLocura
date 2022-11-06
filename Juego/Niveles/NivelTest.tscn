@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/SectorMeteoritos.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Juego/Explosiones/ExplosionMeteorito.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Juego/Niveles/CamaraJuego.gd" type="Script" id=10]
 [ext_resource path="res://Juego/Naves/Estacion/EstacionRecarga.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Juego/Enemigos/EnemigoInterceptor.tscn" type="PackedScene" id=12]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 4 )
@@ -19,12 +20,10 @@ meteorito = ExtResource( 8 )
 explosion_meteorito = ExtResource( 9 )
 sector_meteoritos = ExtResource( 2 )
 tiempo_transicion_camara = 0.7
+enemigo_interceptor = ExtResource( 12 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 466.831, 367.05 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 5 )
 
 [node name="TriggersLluviaMeteoritos" type="Node2D" parent="."]
 
@@ -32,16 +31,26 @@ environment = ExtResource( 5 )
 position = Vector2( 1311.8, 322.904 )
 numero_peligros = 8
 
+[node name="TriggerInterceptores" type="Node2D" parent="."]
+
+[node name="SectorDePeligro" parent="TriggerInterceptores" instance=ExtResource( 6 )]
+position = Vector2( -361.627, 327.58 )
+tipo_peligro = "Enemigo"
+numero_peligros = 2
+
 [node name="ContenedorEstaciones" type="Node" parent="."]
 
 [node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
-position = Vector2( 1275.04, 1199.44 )
+position = Vector2( 467.934, 1664.93 )
 
 [node name="EstacionRecarga2" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
-position = Vector2( 1346.88, -883.85 )
+position = Vector2( 441.903, -1171.53 )
 
 [node name="EstacionRecarga3" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
-position = Vector2( -1203.36, 481.064 )
+position = Vector2( -1844.64, 379.179 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 5 )
 
 [node name="CamaraNivel" type="Camera2D" parent="."]
 script = ExtResource( 10 )

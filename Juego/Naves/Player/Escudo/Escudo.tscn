@@ -208,14 +208,17 @@ script = ExtResource( 5 )
 shape = SubResource( 1 )
 
 [node name="SpriteCompleto" type="Sprite" parent="."]
+modulate = Color( 0, 5, 1, 1 )
 rotation = 1.5708
 texture = ExtResource( 3 )
 
 [node name="SpriteAbriendo1" type="Sprite" parent="."]
+modulate = Color( 0.2, 4, 1, 1 )
 rotation = 1.5708
 texture = ExtResource( 1 )
 
 [node name="SpriteAbriendo2" type="Sprite" parent="."]
+modulate = Color( 0, 2, 0.5, 1 )
 rotation = 1.5708
 texture = ExtResource( 2 )
 

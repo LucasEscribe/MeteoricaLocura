@@ -6,7 +6,7 @@ onready var carga_sfx:AudioStreamPlayer2D = $CargaSFX
 onready var vacio_sfx: AudioStreamPlayer2D = $VacioSFX
 
 ## Atributos Export
-export var energia:float = 6.0
+export var energia:float = 7.0
 export var radio_energia_entregada: float = 0.5
 
 ## Atributos
@@ -37,10 +37,8 @@ func puede_recargar(event: InputEvent) -> bool:
 
 func controlar_energia() -> void:
 	energia -= radio_energia_entregada
-	print("Energía Estación: ", energia)
 	if energia <= 0.0:
 		vacio_sfx.play()
-		carga_sfx.stop()
 
 
 ## Señales Internas
@@ -58,8 +56,5 @@ func _on_AreaRecarga_body_entered(body: Node) -> void:
 func _on_AreaRecarga_body_exited(body: Node) -> void:
 	if body is Player:
 		player_en_zona = false
-		if vacio_sfx.playing or carga_sfx.playing:
-			vacio_sfx.stop()
-			carga_sfx.stop()
-
+		
 	body.set_gravity_scale(0.0)

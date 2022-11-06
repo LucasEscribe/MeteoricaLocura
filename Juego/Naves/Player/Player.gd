@@ -26,6 +26,9 @@ func get_escudo() -> Escudo:
 
 
 ## Métodos
+func _ready() -> void:
+	DatosJuego.set_player_actual(self)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not esta_input_activo():
 		return
@@ -89,13 +92,13 @@ func player_input() -> void:
 		canion.set_esta_disparando(false)
 
 
-
 func esta_input_activo() -> bool:
 	if estado_actual in [ESTADO.MUERTO, ESTADO.SPAWN]:
 		return false
 	
 	return true
 
-
+## Señales Internas
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	pass # Replace with function body.
+	if anim_name == "spawn":
+		controlador_estados(ESTADO.VIVO)
