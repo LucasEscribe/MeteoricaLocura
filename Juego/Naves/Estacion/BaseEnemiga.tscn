@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Juego/Naves/Estacion/AreaAtraccion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Naves/Estacion/BaseEnemiga_4.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Juego/Naves/impactoNave.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Juego/Naves/Estacion/PosicionesSpawn.gd" type="Script" id=9]
 [ext_resource path="res://Juego/Enemigos/EnemigoOrbital.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Juego/Naves/Estacion/RutaEnemigo.gd" type="Script" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 55.6658
@@ -106,6 +107,11 @@ tracks/1/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( -47.1434, 4.48985, 47.1434, -4.48985, 101.745, -294.396, -97.515, -14.2705, 97.515, 14.2705, 227.529, -381.228, 40.433, 26.1626, -40.433, -26.1626, 342.326, -423.942, -85.6229, 28.541, 85.6229, -28.541, 443.773, -453.309, -78.4877, -19.0273, 78.4877, 19.0273, 563.909, -423.942, -71.3524, -14.2705, 71.3524, 14.2705, 670.696, -375.888, -54.7035, -64.2172, 54.7035, 64.2172, 766.805, -287.789, 0, -80.8661, 0, 80.8661, 846.895, -189.011, -35.6762, 85.6229, 35.6762, -85.6229, 894.949, -71.5446, 59.4603, -61.8388, -59.4603, 61.8388, 894.949, 16.5548, -26.6968, -88.0994, 26.6968, 88.0994, 868.253, 134.021, -5.33936, -85.4297, 5.33936, 85.4297, 822.868, 243.478, 16.0181, -72.0814, -16.0181, 72.0814, 745.447, 326.238, 29.3665, -72.0814, -29.3665, 72.0814, 670.696, 384.971, 93.4388, -61.4026, -93.4388, 61.4026, 563.909, 430.355, 88.0994, -8.00904, -88.0994, 8.00904, 459.792, 454.382, 122.805, -2.66968, -122.805, 2.66968, 347.665, 430.355, 120.136, 29.3665, -120.136, -29.3665, 227.529, 382.301, 106.787, 74.751, -106.787, -74.751, 112.733, 296.871, 48.0542, 53.3936, -48.0542, -53.3936, 59.3397, 200.763, 61.4026, 61.4026, -61.4026, -61.4026, 16.6248, 101.984, 48.0542, 61.4026, -48.0542, -61.4026, 5.94611, 5.87598, 33.6739, 94.2868, -33.6739, -94.2868, 23.1725, -94.5979, -44.8985, 53.8782, 44.8985, -53.8782, 101.473, -293.836 )
+}
+
 [node name="BaseEnemiga" type="Node2D"]
 script = ExtResource( 6 )
 orbital = ExtResource( 10 )
@@ -131,7 +137,7 @@ texture = ExtResource( 2 )
 
 [node name="AreaColision" type="Area2D" parent="."]
 collision_layer = 32
-collision_mask = 27
+collision_mask = 15
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D1" type="CollisionShape2D" parent="AreaColision"]
@@ -162,20 +168,31 @@ anims/rotacion_horario = SubResource( 6 )
 stream = ExtResource( 8 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 0, -137 )
 
 [node name="PosicionesSpawn" type="Node2D" parent="."]
 script = ExtResource( 9 )
 
 [node name="Norte" type="Position2D" parent="PosicionesSpawn"]
+position = Vector2( 0, -400 )
 
 [node name="Sur" type="Position2D" parent="PosicionesSpawn"]
+position = Vector2( 0, 400 )
 
 [node name="Oeste" type="Position2D" parent="PosicionesSpawn"]
+position = Vector2( 400, 0 )
 
 [node name="Este" type="Position2D" parent="PosicionesSpawn"]
+position = Vector2( -400, 0 )
+
+[node name="RutaEnemigo" type="Path2D" parent="."]
+position = Vector2( -450, 0 )
+curve = SubResource( 7 )
+script = ExtResource( 11 )
+
+[node name="TimerSpawnerEnemigos" type="Timer" parent="."]
 
 [connection signal="body_entered" from="AreaColision" to="." method="_on_AreaColision_body_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="timeout" from="TimerSpawnerEnemigos" to="." method="_on_TimerSpawnerEnemigos_timeout"]
 
 [editable path="AreaAtraccion"]
