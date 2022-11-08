@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/rele_activado.ogg-78cedf64239864f40926554fc6043a85.oggstr"
+
+[deps]
+
+source_file="res://Juego/Naves/Estacion/Rele/rele_activado.ogg"
+dest_files=[ "res://.import/rele_activado.ogg-78cedf64239864f40926554fc6043a85.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
