@@ -142,7 +142,7 @@ tracks/4/keys = {
 radius = 527.034
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 520.265
+radius = 751.25
 
 [node name="EnemigoInterceptor" instance=ExtResource( 1 )]
 collision_layer = 2
@@ -191,6 +191,7 @@ shape = SubResource( 4 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" index="0"]
+position = Vector2( 0, -1 )
 shape = SubResource( 5 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

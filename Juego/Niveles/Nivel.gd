@@ -14,6 +14,7 @@ export var sector_meteoritos:PackedScene = null
 export var tiempo_transicion_camara: float = 2.0
 export var enemigo_interceptor: PackedScene = null
 export var rele_masa: PackedScene = null
+export var tiempo_limite: int = 30
 
 ## Atributos Onready
 onready var contenedor_proyectiles: Node
@@ -22,14 +23,18 @@ onready var contenedor_sector_meteoritos: Node
 onready var camara_nivel:Camera2D = $CamaraNivel
 onready var camara_player:CamaraJuego = $Player/CamaraPlayer
 onready var contenedor_enemigos:Node
+onready var actualizador_timer: Timer = $ActualizadorTimer
 
 ## Metodos
 func _ready() -> void:
+	Eventos.emit_signal("nivel_iniciado")
+	Eventos.emit_signal("actualizar_tiempo", tiempo_limite)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	conectar_seniales()
 	crear_contenedores()
 	numero_bases_enemigas = contabilizar_bases_enemigas()
 	player = DatosJuego.get_player_actual()
+	actualizador_timer.start()
 
 ## Metodos Custom 
 func conectar_seniales() -> void:
@@ -78,6 +83,7 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void
 
 func controlar_meteoritos_restantes()  -> void:
 	meteoritos_totales -= 1
+	Eventos.emit_signal("cambio_numero_meteoritos", meteoritos_totales)
 	if meteoritos_totales == 0:
 		contenedor_sector_meteoritos.get_child(0).queue_free()
 		camara_player.set_puede_hacer_zoom(true)
@@ -122,6 +128,20 @@ func crear_rele() -> void:
 	new_rele_masa.global_position = player.global_position + (margen * pos_aleatoria)
 	add_child(new_rele_masa)
 
+
+## Destruir Nivel
+func destruir_nivel() -> void:
+	crear_explosion(
+		player.global_position,
+		#8.0,
+		2,
+		1.5,
+		Vector2(300.0, 200.0)
+	)
+	
+	player.destruir() 
+
+
 ## Cámara
 func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D, tiempo_transicion:float) -> void:
 	$TweenCamara.interpolate_property(
@@ -149,6 +169,7 @@ func _on_nave_destruida(nave: Player, posicion: Vector2, num_explosiones: int) -
 			camara_nivel,
 			tiempo_transicion_camara
 			)
+		$RestartTimer.start()
 
 	crear_explosion(posicion, num_explosiones, 0.6, Vector2(100.0, 50.0))
 
@@ -184,6 +205,7 @@ func crear_explosion(
 func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_peligros:int) -> void:
 	if tipo_peligro == "Meteorito":
 		crear_sector_meteoritos(centro_cam, num_peligros)
+		Eventos.emit_signal("cambio_numero_meteoritos", num_peligros)
 	elif tipo_peligro == "Enemigo":
 		crear_sector_enemigos(num_peligros)
 
@@ -210,3 +232,15 @@ func _on_spawn_orbital(enemigo: EnemigoOrbital) -> void:
 func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
 	if object.name == "CamaraPlayer":
 		object.global_position = $Player.global_position
+
+func _on_RestartTimer_timeout() -> void:
+	Eventos.emit_signal("nivel_terminado")
+	yield(get_tree().create_timer(1.0), "timeout")
+	get_tree().reload_current_scene()
+
+
+func _on_ActualizadorTimer_timeout() -> void:
+	tiempo_limite -= 1
+	Eventos.emit_signal("actualizar_tiempo", tiempo_limite)
+	if tiempo_limite == 0:
+		destruir_nivel()
