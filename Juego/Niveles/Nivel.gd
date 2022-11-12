@@ -175,17 +175,13 @@ func _on_nave_destruida(nave: Player, posicion: Vector2, num_explosiones: int) -
 
 func _on_base_destruida(_base, pos_partes: Array) -> void:
 	for posicion in pos_partes:
-		crear_explosion(posicion, 2.0)
-		yield (get_tree().create_timer(0.5), "timeout")
+		crear_explosion(posicion, rand_range(0.5, 2.0))
+		yield(get_tree().create_timer(0.5), "timeout")
 		
 	numero_bases_enemigas -= 1
-	if numero_bases_enemigas == 0:
+	if numero_bases_enemigas == 0 and player:
 		crear_rele()
 
-#func _on_base_destruida(pos_partes: Array) -> void:
-#	for posicion in pos_partes:
-#		crear_explosion(posicion)
-#		yield(get_tree().create_timer(0.5), "timeout")
 
 func crear_explosion(
 	posicion: Vector2,

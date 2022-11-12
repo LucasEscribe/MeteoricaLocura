@@ -46,6 +46,7 @@ func recibir_danio(danio: float) -> void:
 	
 	if hitpoints <= 0 and not esta_destruida:
 		esta_destruida = true
+		destruir()
 		queue_free()
 	
 	impacto_sfx.play()
@@ -56,9 +57,10 @@ func destruir() -> void:
 		$Sprite/Sprite2.global_position,
 		$Sprite/Sprite3.global_position,
 		$Sprite/Sprite4.global_position
-		]
+	]
 
 	Eventos.emit_signal("base_destruida", self, posicion_partes)
+	Eventos.emit_signal("minimapa_objeto_destruido", self)
 	queue_free()
 
 func spawnear_orbital() -> void:
