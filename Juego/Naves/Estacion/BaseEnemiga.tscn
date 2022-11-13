@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Juego/Naves/Estacion/AreaAtraccion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Naves/Estacion/BaseEnemiga_4.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Juego/Enemigos/EnemigoOrbital.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Juego/Naves/Estacion/RutaEnemigo.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Juego/Naves/Estacion/RutaEnemigo2.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Juego/UI/BarrasEstado/BarraSalud.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 55.6658
@@ -108,6 +109,15 @@ tracks/1/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.564706, 0, 1, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
 [node name="BaseEnemiga" type="Node2D" groups=[
 "minimap",
 ]]
@@ -185,6 +195,15 @@ position = Vector2( 400, 0 )
 position = Vector2( -400, 0 )
 
 [node name="TimerSpawnerEnemigos" type="Timer" parent="."]
+
+[node name="BarraSalud" parent="." instance=ExtResource( 13 )]
+margin_left = -107.0
+margin_top = -287.0
+margin_right = 107.0
+margin_bottom = -260.0
+rect_rotation = 0.0
+custom_styles/fg = SubResource( 7 )
+siempre_visible = true
 
 [connection signal="body_entered" from="AreaColision" to="." method="_on_AreaColision_body_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

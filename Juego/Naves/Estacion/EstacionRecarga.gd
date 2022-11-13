@@ -4,6 +4,7 @@ extends Node2D
 ## atributos Onready
 onready var carga_sfx:AudioStreamPlayer2D = $CargaSFX
 onready var vacio_sfx: AudioStreamPlayer2D = $VacioSFX
+onready var barra_energia: ProgressBar = $BarraEnergia
 
 ## Atributos Export
 export var energia:float = 7.0
@@ -14,6 +15,11 @@ var nave_player: Player = null
 var player_en_zona: bool = false
 
 ## Metodos
+func _ready() -> void:
+	barra_energia.max_value = energia
+	barra_energia.value = energia
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not puede_recargar(event):
 		return
@@ -44,6 +50,8 @@ func controlar_energia() -> void:
 	energia -= radio_energia_entregada
 	if energia <= 0.0:
 		vacio_sfx.play()
+	
+	barra_energia.value = energia
 
 
 ## Señales Internas

@@ -56,13 +56,13 @@ position = Vector2( 441.903, -1171.53 )
 [node name="EstacionRecarga3" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
 position = Vector2( -1844.64, 379.179 )
 
+[node name="EstacionRecarga4" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
+position = Vector2( 1120, 2800 )
+
 [node name="ContenedorBaseEnemiga" type="Node" parent="."]
 
 [node name="BaseEnemiga" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
-position = Vector2( 1366.46, 2354.17 )
-
-[node name="BaseEnemiga2" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
-position = Vector2( -419.526, 2318.16 )
+position = Vector2( 2982.46, -1165.83 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 5 )

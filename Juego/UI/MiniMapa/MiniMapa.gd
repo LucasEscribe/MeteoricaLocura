@@ -43,9 +43,7 @@ func _ready() -> void:
 	set_process(false)
 	icono_player.position = zona_renderizado.rect_size * 0.5
 	escala_grilla = zona_renderizado.rect_size / (get_viewport_rect().size * escala_zoom)
-	Eventos.connect("nivel_iniciado", self, "_on_nivel_iniciado")
-	Eventos.connect("nave_destruida", self, "_on_nivel_destruido")
-	Eventos.connect("minimapa_objeto_creado", self, "obtener_objetos_minimapa")
+	conectar_seniales()
 	
 func _process(delta: float) -> void:
 	if not player:
@@ -57,9 +55,13 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("minimapa"):
 		set_esta_visible(not esta_visible)
+		
 
 ## Métodos Custom
 func conectar_seniales() -> void:
+	Eventos.connect("nivel_iniciado", self, "_on_nivel_iniciado")
+	Eventos.connect("nave_destruida", self, "_on_nave_destruida")
+	Eventos.connect("minimapa_objeto_creado", self, "obtener_objetos_minimapa")
 	Eventos.connect("minimapa_objeto_destruido", self, "quitar_icono")
 
 func quitar_icono(objeto: Node2D) -> void:
@@ -72,7 +74,7 @@ func _on_nivel_iniciado() -> void:
 	obtener_objetos_minimapa()
 	set_process(true)
 
-func _on_nivel_destruido(nave: NaveBase, _posicion, _explosiones) -> void:
+func _on_nave_destruida(nave: NaveBase, _posicion, _explosiones) -> void:
 	if nave is Player:
 		player = null
 
@@ -93,6 +95,7 @@ func obtener_objetos_minimapa() -> void:
 			items_mini_mapa[objeto] = sprite_icono
 			items_mini_mapa[objeto].visible = true
 			zona_renderizado.add_child(items_mini_mapa[objeto]) 
+
 
 func modificar_posicion_iconos() -> void:
 	for item in items_mini_mapa:

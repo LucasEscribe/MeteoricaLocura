@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Juego/Naves/NaveBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Enemigos/EnemigoInterceptor.png" type="Texture" id=2]
@@ -139,10 +139,19 @@ tracks/4/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 417.966
+radius = 363.014
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 592.362
+radius = 392.755
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.298039, 0.403922, 0.792157, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
 
 [node name="EnemigoInterceptor" groups=[
 "minimap",
@@ -195,6 +204,13 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" index="0"]
 position = Vector2( 0, -1 )
 shape = SubResource( 5 )
+
+[node name="BarraSalud" parent="." index="8"]
+margin_left = -102.778
+margin_top = 75.0
+margin_right = 47.222
+margin_bottom = 89.0
+custom_styles/fg = SubResource( 6 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="AreaDisparo" to="." method="_on_AreaDisparo_body_entered"]
