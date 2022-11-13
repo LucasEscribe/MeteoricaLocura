@@ -10,6 +10,11 @@ export var tiempo_transicion_camara: float = 2.0
 export var enemigo_interceptor: PackedScene = null
 export var rele_masa: PackedScene = null
 export var tiempo_limite: int = 30
+export var musica_nivel: AudioStream = null
+export var musica_meteoritos: AudioStream = null
+export var musica_interceptores: AudioStream = null
+export var musica_orbitales: AudioStream = null
+
 
 ## Atributos Onready
 onready var contenedor_proyectiles: Node
@@ -36,6 +41,10 @@ func _ready() -> void:
 	numero_bases_enemigas = contabilizar_bases_enemigas()
 	player = DatosJuego.get_player_actual()
 	actualizador_timer.start()
+	# Música
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	MusicaJuego.set_streams(musica_nivel, musica_meteoritos, musica_interceptores, musica_orbitales)
+	MusicaJuego.play_musica_nivel()
 
 
 ## Metodos Custom 
@@ -71,6 +80,7 @@ func crear_contenedores() -> void:
 
 ## Sector Meteoritos
 func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void:
+	MusicaJuego.transicion_musicas()
 	meteoritos_totales = numero_peligros
 	var new_sector_meteoritos:SectorMeteoritos = sector_meteoritos.instance()
 	new_sector_meteoritos.crear(centro_camara, numero_peligros)
@@ -89,7 +99,9 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int) -> void
 func controlar_meteoritos_restantes()  -> void:
 	meteoritos_totales -= 1
 	Eventos.emit_signal("cambio_numero_meteoritos", meteoritos_totales)
+	
 	if meteoritos_totales == 0:
+		MusicaJuego.transicion_musicas()
 		contenedor_sector_meteoritos.get_child(0).queue_free()
 		camara_player.set_puede_hacer_zoom(true)
 		var zoom_actual = camara_player.zoom

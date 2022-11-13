@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/SectorMeteoritos.tscn" type="PackedScene" id=2]
@@ -15,6 +15,10 @@
 [ext_resource path="res://Juego/Naves/Estacion/BaseEnemiga.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Juego/UI/HUD/HUD.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Juego/Naves/Estacion/Rele/ReleMasa.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Juego/Niveles/Musica/Interceptores.wav" type="AudioStream" id=16]
+[ext_resource path="res://Juego/Niveles/Musica/Meteoritos.wav" type="AudioStream" id=17]
+[ext_resource path="res://Juego/Niveles/Musica/Orbitales.wav" type="AudioStream" id=18]
+[ext_resource path="res://Juego/Niveles/Musica/Base.wav" type="AudioStream" id=19]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 4 )
@@ -26,6 +30,10 @@ tiempo_transicion_camara = 0.7
 enemigo_interceptor = ExtResource( 12 )
 rele_masa = ExtResource( 15 )
 tiempo_limite = 120
+musica_nivel = ExtResource( 19 )
+musica_meteoritos = ExtResource( 17 )
+musica_interceptores = ExtResource( 16 )
+musica_orbitales = ExtResource( 18 )
 
 [node name="HUD" parent="." instance=ExtResource( 14 )]
 

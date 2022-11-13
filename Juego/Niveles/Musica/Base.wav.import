@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Base.wav-fbdc6b735fbc3bcc8585572557bbe423.sample"
+
+[deps]
+
+source_file="res://Juego/Niveles/Musica/Base.wav"
+dest_files=[ "res://.import/Base.wav-fbdc6b735fbc3bcc8585572557bbe423.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

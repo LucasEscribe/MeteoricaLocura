@@ -159,13 +159,14 @@ _global_script_class_icons={
 [application]
 
 config/name="MeteoricaLocura"
-run/main_scene="res://Juego/Niveles/NivelTest.tscn"
+run/main_scene="res://Juego/UI/Menu/MenuPrincipal.tscn"
 config/icon="res://TemporalAssets/LocurasMeteoricas.png"
 
 [autoload]
 
 Eventos="*res://Juego/Autoloads/Eventos.gd"
 DatosJuego="*res://Juego/Autoloads/DatosJuego.gd"
+MusicaJuego="*res://Juego/Autoloads/MusicaJuego.tscn"
 
 [display]
 
@@ -177,6 +178,11 @@ window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[global]
+
+escena=false
+defect=false
 
 [input]
 
