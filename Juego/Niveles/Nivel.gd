@@ -14,6 +14,7 @@ export var musica_nivel: AudioStream = null
 export var musica_meteoritos: AudioStream = null
 export var musica_interceptores: AudioStream = null
 export var musica_orbitales: AudioStream = null
+export(String, FILE, "*.tscn") var prox_nivel = ""
 
 
 ## Atributos Onready
@@ -56,6 +57,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("nave_en_sector_peligro", self, "_on_nave_en_sector_peligro")
 	Eventos.connect("base_destruida", self, "_on_base_destruida")
 	Eventos.connect("spawn_orbital", self, "_on_spawn_orbital")
+	Eventos.connect("nivel_completado", self, "_on_nivel_completado")
 
 
 ## Contenedores
@@ -140,7 +142,7 @@ func contabilizar_bases_enemigas() -> int:
 func crear_rele() -> void:
 	var new_rele_masa: ReleDeMasa = rele_masa.instance()
 	var pos_aleatoria: Vector2 = crear_posicion_aleatoria(400.0, 200.0)
-	var margen: Vector2 = Vector2(10.0, 10.0)
+	var margen: Vector2 = Vector2(7.7, 7.7)
 	if pos_aleatoria.x < 0:
 		margen.x *= -1
 	if pos_aleatoria.y < 0:
@@ -251,6 +253,10 @@ func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio: f
 func _on_spawn_orbital(enemigo: EnemigoOrbital) -> void:
 	contenedor_enemigos.add_child(enemigo)
 
+func _on_nivel_completado() -> void:
+	Eventos.emit_signal("nivel_terminado")
+	yield(get_tree().create_timer(1.0), "timeout")
+	get_tree().change_scene(prox_nivel)
 
 ## Señales Internas
 func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
