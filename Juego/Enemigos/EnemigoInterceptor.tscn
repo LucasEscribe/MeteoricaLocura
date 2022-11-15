@@ -139,10 +139,10 @@ tracks/4/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 363.014
+radius = 763.248
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 392.755
+radius = 867.989
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.298039, 0.403922, 0.792157, 1 )
@@ -162,6 +162,7 @@ physics_material_override = ExtResource( 6 )
 contacts_reported = 2
 contact_monitor = true
 script = ExtResource( 4 )
+potencia_max = 555.0
 
 [node name="Sprite" parent="." index="0"]
 rotation = -1.5708
@@ -202,7 +203,7 @@ shape = SubResource( 4 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" index="0"]
-position = Vector2( 0, -1 )
+position = Vector2( 0, -3.37842 )
 shape = SubResource( 5 )
 
 [node name="BarraSalud" parent="." index="8"]

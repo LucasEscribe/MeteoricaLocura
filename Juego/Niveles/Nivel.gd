@@ -156,7 +156,6 @@ func crear_rele() -> void:
 func destruir_nivel() -> void:
 	crear_explosion(
 		player.global_position,
-		#8.0,
 		2,
 		1.5,
 		Vector2(300.0, 200.0)
