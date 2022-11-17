@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Juego/Naves/NaveBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Enemigos/EnemigoOrbital.png" type="Texture" id=2]
@@ -49,6 +49,23 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0, 0, 0, 1 )
 border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.764706, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="EnemigoOrbital" instance=ExtResource( 1 )]
 collision_layer = 2
@@ -58,6 +75,7 @@ contacts_reported = 2
 contact_monitor = true
 script = ExtResource( 3 )
 hitpoints = 8.0
+velocidad = 300.0
 
 [node name="Sprite" parent="." index="0"]
 rotation = -1.5708
@@ -98,6 +116,7 @@ margin_top = 35.0
 margin_right = 11.022
 margin_bottom = 49.0
 custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 

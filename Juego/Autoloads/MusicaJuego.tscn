@@ -17,14 +17,17 @@ bus = "Musica"
 
 [node name="MusicaMeteoritos" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+volume_db = -6.047
 bus = "Musica"
 
 [node name="MusicaInterceptores" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
+volume_db = -7.256
 bus = "Musica"
 
 [node name="MusicaOrbitales" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -8.465
 bus = "Musica"
 
 [node name="TweenMusicaOn" type="Tween" parent="."]

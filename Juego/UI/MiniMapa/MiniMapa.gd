@@ -32,8 +32,8 @@ func set_esta_visible(hacer_visible: bool) -> void:
 		"modulate",
 		Color(1, 1, 1, not hacer_visible),
 		Color(1, 1, 1, hacer_visible),
-		Tween.TRANS_LINEAR,
 		0.5,
+		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)
 	tween_visibilidad.start()
@@ -110,6 +110,7 @@ func modificar_posicion_iconos() -> void:
 		pos_icono.x = clamp(pos_icono.x, 0, zona_renderizado.rect_size.x)
 		pos_icono.y = clamp(pos_icono.y, 0, zona_renderizado.rect_size.y)
 		item_icono.position = pos_icono
+
 
 
 ## Señales Internas

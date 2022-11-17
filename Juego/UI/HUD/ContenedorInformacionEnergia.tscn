@@ -16,7 +16,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="ContenedorInformacionEnergia" instance=ExtResource( 1 )]
-modulate = Color( 1, 1, 1, 1 )
 script = ExtResource( 2 )
 
 [node name="Label" parent="." index="1"]

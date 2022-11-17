@@ -23,7 +23,7 @@ func _on_nave_destruida(nave: NaveBase, _posicion, _explosiones) -> void:
 	
 	if nave.is_in_group("minimap"):
 		Eventos.emit_signal("minimapa_objeto_destruido", nave)
-		
+
 
 func rotar_hacia_player() -> void:
 	if player_objetivo:

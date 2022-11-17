@@ -7,7 +7,6 @@ enum ESTADO {SPAWN, VIVO, INVENCIBLE, MUERTO}
 # Atributos Export
 export var hitpoints: float = 20.0
 
-
 # Atributos
 var estado_actual: int = ESTADO.SPAWN
 
@@ -55,6 +54,7 @@ func recibir_danio(danio: float) -> void:
 
 func destruir() -> void:
 	controlador_estados(ESTADO.MUERTO)
+
 
 # Señales Internas
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:

@@ -17,11 +17,15 @@ numero_peligros = 4
 position = Vector2( 6526.98, -47.8918 )
 numero_peligros = 2
 
-[node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" index="2" instance=ExtResource( 4 )]
+[node name="SectorDePeligro6" parent="TriggersLluviaMeteoritos" index="2" instance=ExtResource( 4 )]
+position = Vector2( 2298.42, 510.882 )
+numero_peligros = 2
+
+[node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" index="3" instance=ExtResource( 4 )]
 position = Vector2( 5729.05, -2244.92 )
 numero_peligros = 3
 
-[node name="SectorDePeligro3" parent="TriggersLluviaMeteoritos" index="3" instance=ExtResource( 4 )]
+[node name="SectorDePeligro3" parent="TriggersLluviaMeteoritos" index="4" instance=ExtResource( 4 )]
 position = Vector2( 5262.1, 1580.43 )
 numero_peligros = 4
 
@@ -34,6 +38,11 @@ numero_peligros = 2
 position = Vector2( -1298.73, 2607.63 )
 tipo_peligro = "Enemigo"
 numero_peligros = 4
+
+[node name="SectorDePeligro6" parent="TriggerInterceptores" index="2" instance=ExtResource( 4 )]
+position = Vector2( -408.006, 507.536 )
+tipo_peligro = "Enemigo"
+numero_peligros = 1
 
 [node name="EstacionRecarga" parent="ContenedorEstaciones" index="0" instance=ExtResource( 2 )]
 position = Vector2( -1167.36, -3178.81 )
@@ -50,10 +59,13 @@ position = Vector2( 5693.13, -3214.73 )
 [node name="BaseEnemiga" parent="ContenedorBaseEnemiga" index="0" instance=ExtResource( 3 )]
 position = Vector2( 1276.98, -1860.85 )
 
-[node name="BaseEnemiga2" parent="ContenedorBaseEnemiga" index="1" instance=ExtResource( 3 )]
+[node name="BaseEnemiga4" parent="ContenedorBaseEnemiga" index="1" instance=ExtResource( 3 )]
+position = Vector2( 1307.18, -546.976 )
+
+[node name="BaseEnemiga2" parent="ContenedorBaseEnemiga" index="2" instance=ExtResource( 3 )]
 position = Vector2( 1452.98, 2683.15 )
 
-[node name="BaseEnemiga3" parent="ContenedorBaseEnemiga" index="2" instance=ExtResource( 3 )]
+[node name="BaseEnemiga3" parent="ContenedorBaseEnemiga" index="3" instance=ExtResource( 3 )]
 position = Vector2( 3436.98, -1828.85 )
 
 [node name="StarFieldBackground" parent="." index="10"]

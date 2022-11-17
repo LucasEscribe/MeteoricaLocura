@@ -66,7 +66,6 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FadeCanvas"]
-autoplay = "fade_in"
 anims/default = SubResource( 1 )
 anims/fade_in = SubResource( 2 )
 
@@ -103,7 +102,6 @@ text = "Tiempo Restante mm:ss	"
 [node name="InfoLaser" parent="." groups=[
 "contenedor_info",
 ] instance=ExtResource( 4 )]
-modulate = Color( 1, 1, 1, 0 )
 margin_left = 1577.0
 margin_top = 932.713
 margin_right = 1911.0
@@ -118,7 +116,6 @@ text = "Energía Láser"
 [node name="InfoEscudo" parent="." groups=[
 "contenedor_info",
 ] instance=ExtResource( 4 )]
-modulate = Color( 1, 1, 1, 0 )
 margin_left = 1576.58
 margin_top = 782.532
 margin_right = 1910.58

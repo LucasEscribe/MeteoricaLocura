@@ -5,11 +5,14 @@ export var tiempo_transicion: float = 4.0
 export(float, -50.0, -20.0, 5.0 ) var volumen_apagado = -40
 
 ## Atributos Onready
-onready var lista_musicas: Dictionary = {"menu_principal": $MusicaMenuPrincipal} setget ,get_lista_musicas
-onready var musica_nivel: AudioStreamPlayer = $MusicaNivel
-onready var musica_meteoritos: AudioStreamPlayer = $MusicaMeteoritos
-onready var musica_interceptores: AudioStreamPlayer = $MusicaInterceptores
-onready var musica_orbitales: AudioStreamPlayer = $MusicaOrbitales
+onready var lista_musicas: Dictionary = {
+	"menu_principal": $MusicaMenuPrincipal,
+	"musica_nivel": $MusicaNivel,
+	"musica_meteoritos": $MusicaMeteoritos,
+	"musica_interceptores": $MusicaInterceptores,
+	"musica_orbitales": $MusicaOrbitales,
+	} setget ,get_lista_musicas
+
 onready var tween_on: Tween = $TweenMusicaOn
 onready var tween_off: Tween = $TweenMusicaOff
 
@@ -21,11 +24,11 @@ func get_lista_musicas() -> Dictionary:
 	return lista_musicas
 
 ## Métodos Custom
-func set_streams(stream_musica: AudioStream, stream_meteoritos: AudioStream, stream_interceptores: AudioStream, stream_orbitales: AudioStream) -> void:
-	musica_nivel.stream = stream_musica
-	musica_meteoritos.stream = stream_meteoritos
-	musica_interceptores.stream = stream_interceptores
-	musica_orbitales.stream = stream_orbitales
+#func set_streams(stream_musica: AudioStream, stream_meteoritos: AudioStream, stream_interceptores: AudioStream, stream_orbitales: AudioStream) -> void:
+#	musica_nivel.stream = stream_musica
+#	musica_meteoritos.stream = stream_meteoritos
+#	musica_interceptores.stream = stream_interceptores
+#	musica_orbitales.stream = stream_orbitales
 
 func play_musica(musica: AudioStreamPlayer) -> void:
 	stop_todo()
@@ -33,7 +36,7 @@ func play_musica(musica: AudioStreamPlayer) -> void:
 
 func play_musica_nivel() -> void:
 	stop_todo()
-	musica_nivel.play()
+	play_musica(get_lista_musicas().musica_nivel)
 
 func stop_todo() -> void:
 	for nodo in get_children():
@@ -43,13 +46,13 @@ func stop_todo() -> void:
 func play_boton() -> void:
 	$BotonMenu.play()
 
-func transicion_musicas() -> void:
-	if musica_nivel.playing:
-		fade_in(musica_interceptores)
-		fade_out(musica_nivel)
-	else:
-		fade_in(musica_nivel)
-		fade_out(musica_interceptores)
+#func transicion_musicas() -> void:
+#	if musica_nivel.playing:
+#		fade_in(musica_interceptores)
+#		fade_out(musica_nivel)
+#	else:
+#		fade_in(musica_nivel)
+#		fade_out(musica_interceptores)
 
 
 func fade_in(musica_fade_in: AudioStreamPlayer) -> void:

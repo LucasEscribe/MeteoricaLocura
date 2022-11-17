@@ -49,6 +49,8 @@ func recibir_danio(danio: float) -> void:
 	if hitpoints <= 0 and not esta_destruida:
 		esta_destruida = true
 		destruir()
+		MusicaJuego.fade_out(MusicaJuego.get_lista_musicas().musica_orbitales)
+		MusicaJuego.fade_in(MusicaJuego.get_lista_musicas().musica_nivel)
 	
 	barra_salud.set_hitpoints_actual(hitpoints)
 	impacto_sfx.play()
@@ -125,6 +127,10 @@ func _on_AreaColision_body_entered(body: Node) -> void:
 
 func _on_VisibilityNotifier2D_screen_entered() -> void:
 	#Spawn Orbital
+	if MusicaJuego.get_lista_musicas().musica_interceptores.playing:
+		MusicaJuego.stop_todo()
+	MusicaJuego.fade_out(MusicaJuego.get_lista_musicas().musica_nivel)
+	MusicaJuego.fade_in(MusicaJuego.get_lista_musicas().musica_orbitales)
 	$VisibilityNotifier2D.queue_free()
 	posicion_spawn = deteccion_cuadrante()
 	spawnear_orbital()
