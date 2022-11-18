@@ -29,7 +29,7 @@ onready var actualizador_timer: Timer = $ActualizadorTimer
 ## Atributos
 var meteoritos_totales: int = 0
 var interceptores_totales: int = 0
-var player:Player = null
+var player: Player = null
 var numero_bases_enemigas: int = 0
 
 
@@ -133,9 +133,7 @@ func crear_posicion_aleatoria(rango_horizontal: float, rango_vertical:float) -> 
 ## Sector Enemigos
 func crear_sector_enemigos(num_enemigos: int) -> void:
 	interceptores_totales = num_enemigos
-	if not MusicaJuego.get_lista_musicas().musica_orbitales.playing:
-		MusicaJuego.fade_out(MusicaJuego.get_lista_musicas().musica_nivel)
-		MusicaJuego.fade_in(MusicaJuego.get_lista_musicas().musica_interceptores)
+	
 	for i in range(num_enemigos):
 		var new_interceptor:EnemigoInterceptor = enemigo_interceptor.instance()
 		var spawn_pos:Vector2 = crear_posicion_aleatoria(1000.0, 800.0)
@@ -236,8 +234,10 @@ func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_pel
 	elif tipo_peligro == "Enemigo":
 		crear_sector_enemigos(num_peligros)
 
-func _on_interceptor_destruido(nave: EnemigoInterceptor, pos: Vector2) -> void:
-	interceptores_totales -= 1
+func _on_interceptor_destruido(tipo_peligro:String) -> void:
+	if NaveBase.ESTADO.MUERTO == "Enemigo":
+		interceptores_totales -= 1
+		print(interceptores_totales)
 	if interceptores_totales == 0:
 		MusicaJuego.fade_out(MusicaJuego.get_lista_musicas().musica_interceptores)
 		MusicaJuego.fade_in(MusicaJuego.get_lista_musicas().musica_nivel)

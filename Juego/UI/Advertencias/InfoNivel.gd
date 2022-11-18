@@ -5,4 +5,4 @@ onready var advertencia:AnimationPlayer = $AnimationPlayer
 
 ## Mëtodos
 func _ready() -> void:
-	advertencia.play("defalut")
+	advertencia.play("swpawn")

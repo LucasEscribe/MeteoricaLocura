@@ -35,12 +35,12 @@ tipo_peligro = "Enemigo"
 numero_peligros = 2
 
 [node name="SectorDePeligro5" parent="TriggerInterceptores" index="1" instance=ExtResource( 4 )]
-position = Vector2( -1298.73, 2607.63 )
+position = Vector2( -120.774, 2637.83 )
 tipo_peligro = "Enemigo"
 numero_peligros = 4
 
 [node name="SectorDePeligro6" parent="TriggerInterceptores" index="2" instance=ExtResource( 4 )]
-position = Vector2( -408.006, 507.536 )
+position = Vector2( -392.904, 477.332 )
 tipo_peligro = "Enemigo"
 numero_peligros = 1
 

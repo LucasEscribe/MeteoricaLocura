@@ -5,11 +5,11 @@ extends EnemigoBase
 enum ESTADO_IA {IDLE, ATACANDOQ, ATACANDOP, PERSECUCION}
 
 ## Atributos Export
-export var potencia_max: float = 700.0
+export var potencia_max: float = 800.0
 
 ## Atributos
 var estado_ia_actual:int = ESTADO_IA.ATACANDOP
-var potencia_actual:float = 0.0
+var potencia_actual:float = 50.0
 
 ## Métodos
 func _ready() -> void:
@@ -17,10 +17,10 @@ func _ready() -> void:
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	linear_velocity += dir_player.normalized() * potencia_actual * state.get_step()
-
+	
 	linear_velocity.x = clamp(linear_velocity.x, -potencia_max, potencia_max)
 	linear_velocity.y = clamp(linear_velocity.y, -potencia_max, potencia_max)
-
+	
 ## Métodos Custom
 func controlador_estados_ia(nuevo_estado: int) -> void:
 	match nuevo_estado:
