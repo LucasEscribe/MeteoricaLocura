@@ -10,8 +10,11 @@
 tiempo_limite = 90
 prox_nivel = "res://Juego/Niveles/Nivel3.tscn"
 
+[node name="InfoNivel" parent="." index="1" instance=ExtResource( 4 )]
+
 [node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" index="0" instance=ExtResource( 5 )]
 position = Vector2( 1854.31, 583.68 )
+numero_peligros = 3
 
 [node name="SectorDePeligro" parent="TriggerInterceptores" index="0" instance=ExtResource( 5 )]
 position = Vector2( 56.8899, 567.255 )
@@ -30,7 +33,5 @@ position = Vector2( 1057.04, -1011.47 )
 [node name="BaseEnemiga2" parent="ContenedorBaseEnemiga" index="1" instance=ExtResource( 3 )]
 position = Vector2( 2127.12, 1320.72 )
 
-[node name="StarFieldBackground" parent="." index="10"]
+[node name="StarFieldBackground" parent="." index="11"]
 color_fondo = Color( 0, 0.254902, 0.0941176, 1 )
-
-[node name="InfoNivel" parent="." index="12" instance=ExtResource( 4 )]

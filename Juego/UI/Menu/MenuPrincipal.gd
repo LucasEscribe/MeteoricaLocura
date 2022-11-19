@@ -19,4 +19,6 @@ func _on_BotonJugar_pressed() -> void:
 	get_tree().change_scene(nivel_inicial)
 
 func _on_BotonSalir_pressed() -> void:
+	MusicaJuego.play_boton()
 	get_tree().quit()
+	

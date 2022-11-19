@@ -23,13 +23,6 @@ var vol_original_musica_off: float = 0.0
 func get_lista_musicas() -> Dictionary:
 	return lista_musicas
 
-## Métodos Custom
-#func set_streams(stream_musica: AudioStream, stream_meteoritos: AudioStream, stream_interceptores: AudioStream, stream_orbitales: AudioStream) -> void:
-#	musica_nivel.stream = stream_musica
-#	musica_meteoritos.stream = stream_meteoritos
-#	musica_interceptores.stream = stream_interceptores
-#	musica_orbitales.stream = stream_orbitales
-
 func play_musica(musica: AudioStreamPlayer) -> void:
 	stop_todo()
 	musica.play()
@@ -45,14 +38,6 @@ func stop_todo() -> void:
 
 func play_boton() -> void:
 	$BotonMenu.play()
-
-#func transicion_musicas() -> void:
-#	if musica_nivel.playing:
-#		fade_in(musica_interceptores)
-#		fade_out(musica_nivel)
-#	else:
-#		fade_in(musica_nivel)
-#		fade_out(musica_interceptores)
 
 
 func fade_in(musica_fade_in: AudioStreamPlayer) -> void:

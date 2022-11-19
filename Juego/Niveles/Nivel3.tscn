@@ -9,6 +9,8 @@
 [node name="Nivel3" instance=ExtResource( 1 )]
 prox_nivel = "res://Juego/Niveles/Nivel4.tscn"
 
+[node name="InfoNivel" parent="." index="1" instance=ExtResource( 5 )]
+
 [node name="SectorDePeligro" parent="TriggerInterceptores" index="0" instance=ExtResource( 4 )]
 position = Vector2( 1244.52, 368.277 )
 tipo_peligro = "Enemigo"
@@ -32,7 +34,5 @@ position = Vector2( 1536.6, 3162.1 )
 [node name="BaseEnemiga3" parent="ContenedorBaseEnemiga" index="2" instance=ExtResource( 3 )]
 position = Vector2( 1638.2, -2019.17 )
 
-[node name="StarFieldBackground" parent="." index="10"]
+[node name="StarFieldBackground" parent="." index="11"]
 color_fondo = Color( 0, 0.184314, 0.254902, 1 )
-
-[node name="InfoNivel" parent="." index="12" instance=ExtResource( 5 )]

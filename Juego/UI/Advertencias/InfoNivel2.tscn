@@ -4,6 +4,13 @@
 
 [node name="InfoNivel" instance=ExtResource( 1 )]
 
+[node name="EstquetaAriiba" parent="ColorRect" index="0"]
+margin_left = -474.309
+margin_top = 213.666
+margin_right = 439.691
+margin_bottom = 366.666
+text = "NUNCA CONFÍES"
+
 [node name="EstquetaAbajo" parent="ColorRect2" index="0"]
 text = "Cuidado
 Pueden apaercer Peligros de la nada

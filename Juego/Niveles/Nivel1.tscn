@@ -9,10 +9,10 @@
 tiempo_limite = 60
 prox_nivel = "res://Juego/Niveles/Nivel2.tscn"
 
+[node name="InfoNivel" parent="." index="1" instance=ExtResource( 4 )]
+
 [node name="EstacionRecarga" parent="ContenedorEstaciones" index="0" instance=ExtResource( 3 )]
 position = Vector2( -747.548, 347.346 )
 
 [node name="BaseEnemiga" parent="ContenedorBaseEnemiga" index="0" instance=ExtResource( 2 )]
 position = Vector2( 1783.49, 332.249 )
-
-[node name="InfoNivel" parent="." index="12" instance=ExtResource( 4 )]

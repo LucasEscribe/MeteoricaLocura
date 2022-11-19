@@ -10,6 +10,8 @@
 tiempo_limite = 240
 prox_nivel = "res://Juego/Niveles/Nivel6.tscn"
 
+[node name="InfoNivel" parent="." index="1" instance=ExtResource( 5 )]
+
 [node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" index="0" instance=ExtResource( 4 )]
 position = Vector2( 5019, 1281.45 )
 numero_peligros = 5
@@ -80,7 +82,5 @@ position = Vector2( 8286.69, 3588.05 )
 [node name="BaseEnemiga3" parent="ContenedorBaseEnemiga" index="2" instance=ExtResource( 3 )]
 position = Vector2( 1943.53, 5125.78 )
 
-[node name="StarFieldBackground" parent="." index="10"]
+[node name="StarFieldBackground" parent="." index="11"]
 color_fondo = Color( 0.290196, 0.101961, 0.317647, 1 )
-
-[node name="InfoNivel" parent="." index="12" instance=ExtResource( 5 )]

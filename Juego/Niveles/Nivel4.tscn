@@ -10,30 +10,36 @@
 tiempo_limite = 180
 prox_nivel = "res://Juego/Niveles/Nivel5.tscn"
 
+[node name="InfoNivel" parent="." index="1" instance=ExtResource( 5 )]
+
 [node name="SectorDePeligro4" parent="TriggersLluviaMeteoritos" index="0" instance=ExtResource( 4 )]
 position = Vector2( 492.69, -1741.78 )
 numero_peligros = 4
 
 [node name="SectorDePeligro5" parent="TriggersLluviaMeteoritos" index="1" instance=ExtResource( 4 )]
-position = Vector2( 6451.47, -62.9939 )
+position = Vector2( 6489.52, 203.388 )
 numero_peligros = 2
 
-[node name="SectorDePeligro6" parent="TriggersLluviaMeteoritos" index="2" instance=ExtResource( 4 )]
+[node name="SectorDePeligro7" parent="TriggersLluviaMeteoritos" index="2" instance=ExtResource( 4 )]
+position = Vector2( 5119.56, -595.759 )
+numero_peligros = 1
+
+[node name="SectorDePeligro6" parent="TriggersLluviaMeteoritos" index="3" instance=ExtResource( 4 )]
 position = Vector2( 2298.42, 510.882 )
 numero_peligros = 2
 
-[node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" index="3" instance=ExtResource( 4 )]
+[node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" index="4" instance=ExtResource( 4 )]
 position = Vector2( 5729.05, -2244.92 )
 numero_peligros = 3
 
-[node name="SectorDePeligro3" parent="TriggersLluviaMeteoritos" index="4" instance=ExtResource( 4 )]
+[node name="SectorDePeligro3" parent="TriggersLluviaMeteoritos" index="5" instance=ExtResource( 4 )]
 position = Vector2( 5262.1, 1580.43 )
 numero_peligros = 4
 
 [node name="SectorDePeligro2" parent="TriggerInterceptores" index="0" instance=ExtResource( 4 )]
 position = Vector2( 4561.69, -3214.73 )
 tipo_peligro = "Enemigo"
-numero_peligros = 2
+numero_peligros = 4
 
 [node name="SectorDePeligro5" parent="TriggerInterceptores" index="1" instance=ExtResource( 4 )]
 position = Vector2( -120.774, 2637.83 )
@@ -69,7 +75,5 @@ position = Vector2( 1452.98, 2683.15 )
 [node name="BaseEnemiga3" parent="ContenedorBaseEnemiga" index="3" instance=ExtResource( 3 )]
 position = Vector2( 3436.98, -1828.85 )
 
-[node name="StarFieldBackground" parent="." index="10"]
+[node name="StarFieldBackground" parent="." index="11"]
 color_fondo = Color( 0.32549, 0.317647, 0.054902, 1 )
-
-[node name="InfoNivel" parent="." index="12" instance=ExtResource( 5 )]
