@@ -1,20 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Juego/Niveles/NivelBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Naves/Estacion/EstacionRecarga.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Juego/Naves/Estacion/BaseEnemiga.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/UI/Advertencias/InfoNivel4.tscn" type="PackedScene" id=5]
 
 [node name="Nivel4" instance=ExtResource( 1 )]
 tiempo_limite = 180
 prox_nivel = "res://Juego/Niveles/Nivel5.tscn"
 
 [node name="SectorDePeligro4" parent="TriggersLluviaMeteoritos" index="0" instance=ExtResource( 4 )]
-position = Vector2( -1093.02, -2225.04 )
+position = Vector2( 492.69, -1741.78 )
 numero_peligros = 4
 
 [node name="SectorDePeligro5" parent="TriggersLluviaMeteoritos" index="1" instance=ExtResource( 4 )]
-position = Vector2( 6526.98, -47.8918 )
+position = Vector2( 6451.47, -62.9939 )
 numero_peligros = 2
 
 [node name="SectorDePeligro6" parent="TriggersLluviaMeteoritos" index="2" instance=ExtResource( 4 )]
@@ -45,7 +46,7 @@ tipo_peligro = "Enemigo"
 numero_peligros = 1
 
 [node name="EstacionRecarga" parent="ContenedorEstaciones" index="0" instance=ExtResource( 2 )]
-position = Vector2( -1167.36, -3178.81 )
+position = Vector2( -457.566, -2287.79 )
 
 [node name="EstacionRecarga3" parent="ContenedorEstaciones" index="1" instance=ExtResource( 2 )]
 position = Vector2( 5172.3, 2729.83 )
@@ -57,10 +58,10 @@ position = Vector2( 7450.24, 109.192 )
 position = Vector2( 5693.13, -3214.73 )
 
 [node name="BaseEnemiga" parent="ContenedorBaseEnemiga" index="0" instance=ExtResource( 3 )]
-position = Vector2( 1276.98, -1860.85 )
+position = Vector2( 370.86, -3552.27 )
 
 [node name="BaseEnemiga4" parent="ContenedorBaseEnemiga" index="1" instance=ExtResource( 3 )]
-position = Vector2( 1307.18, -546.976 )
+position = Vector2( 944.732, -577.18 )
 
 [node name="BaseEnemiga2" parent="ContenedorBaseEnemiga" index="2" instance=ExtResource( 3 )]
 position = Vector2( 1452.98, 2683.15 )
@@ -70,3 +71,5 @@ position = Vector2( 3436.98, -1828.85 )
 
 [node name="StarFieldBackground" parent="." index="10"]
 color_fondo = Color( 0.32549, 0.317647, 0.054902, 1 )
+
+[node name="InfoNivel" parent="." index="12" instance=ExtResource( 5 )]

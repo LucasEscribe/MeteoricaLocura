@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 55.6886, 58.0746 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 resource_name = "advertecia_1"
 length = 11.0
 tracks/0/type = "value"
@@ -74,8 +74,7 @@ tracks/4/keys = {
 "values": [ true, true ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "default"
+[sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteSpawn:scale")
@@ -138,8 +137,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "spawn"
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteSpawn:scale")
@@ -202,13 +200,13 @@ tracks/4/keys = {
 "values": [ true, true ]
 }
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=5]
 radius = 763.248
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=6]
 radius = 867.989
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.298039, 0.403922, 0.792157, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -221,7 +219,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.764706, 0, 0, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -268,9 +266,9 @@ position = Vector2( 42, 22 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 autoplay = "spawn"
-anims/advertecia_1 = SubResource( 8 )
-anims/default = SubResource( 2 )
-anims/spawn = SubResource( 3 )
+anims/advertecia_1 = SubResource( 2 )
+anims/default = SubResource( 3 )
+anims/spawn = SubResource( 4 )
 
 [node name="SpriteSpawn" type="Sprite" parent="." index="5"]
 visible = false
@@ -283,22 +281,22 @@ position = Vector2( 0, 1 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDisparo" index="0"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="AreaDeteccion" type="Area2D" parent="." index="7"]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" index="0"]
 position = Vector2( 0, -3.37842 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="BarraSalud" parent="." index="8"]
 margin_left = -102.778
 margin_top = 75.0
 margin_right = 47.222
 margin_bottom = 89.0
-custom_styles/fg = SubResource( 6 )
-custom_styles/bg = SubResource( 7 )
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 8 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="AreaDisparo" to="." method="_on_AreaDisparo_body_entered"]

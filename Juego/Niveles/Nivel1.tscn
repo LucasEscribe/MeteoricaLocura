@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Juego/Niveles/NivelBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Naves/Estacion/BaseEnemiga.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Juego/Naves/Estacion/EstacionRecarga.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Juego/UI/Advertencias/InfoNivel.tscn" type="PackedScene" id=4]
 
 [node name="Nivel1" instance=ExtResource( 1 )]
 tiempo_limite = 60
@@ -13,3 +14,5 @@ position = Vector2( -747.548, 347.346 )
 
 [node name="BaseEnemiga" parent="ContenedorBaseEnemiga" index="0" instance=ExtResource( 2 )]
 position = Vector2( 1783.49, 332.249 )
+
+[node name="InfoNivel" parent="." index="12" instance=ExtResource( 4 )]

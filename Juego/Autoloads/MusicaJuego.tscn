@@ -36,6 +36,7 @@ bus = "Musica"
 
 [node name="MusicaMenuPrincipal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -8.465
 bus = "Musica"
 
 [node name="BotonMenu" type="AudioStreamPlayer" parent="."]

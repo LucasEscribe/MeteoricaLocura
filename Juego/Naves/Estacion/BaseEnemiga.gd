@@ -50,7 +50,7 @@ func recibir_danio(danio: float) -> void:
 		esta_destruida = true
 		destruir()
 		MusicaJuego.fade_out(MusicaJuego.get_lista_musicas().musica_orbitales)
-		MusicaJuego.fade_in(MusicaJuego.get_lista_musicas().musica_nivel)
+		MusicaJuego.play_musica_nivel()
 	
 	barra_salud.set_hitpoints_actual(hitpoints)
 	impacto_sfx.play()
